@@ -39,8 +39,7 @@
 </template>
 <script>
 import { Indicator, Toast } from "mint-ui";
-import http from "@/utils/http";
-import api from "@/constants/apis";
+import { API } from "@/api/index.js";
 export default {
   name: "shoppingCart",
   data() {
@@ -89,7 +88,7 @@ export default {
     handleSubmit() {
       Indicator.open("提交中,请耐心等待...");
       setTimeout(() => {
-        http.get(api.getHomeData).then(res => {
+        API.getHomeData().then(res => {
           Indicator.close();
           if (res.success) {
             Toast({

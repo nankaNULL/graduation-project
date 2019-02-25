@@ -1,5 +1,4 @@
-import api from "@/constants/apis";
-
+import { API } from "@/api/index.js";
 
 const app = {
   state: {
@@ -12,7 +11,7 @@ const app = {
   },
   actions: {
     getUserData({ commit }, params, cb) {
-      api.getHomeData({}).then(ret => {
+      API.getHomeData({}).then(ret => {
         console.log(ret);
         commit('GET_USER_DATA', ret.data || []);
       })

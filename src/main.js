@@ -6,6 +6,7 @@ import router from './router/router'
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import store from './store'
+import '@babel/polyfill'
 
 Vue.use(MintUI);
 new Vue({
