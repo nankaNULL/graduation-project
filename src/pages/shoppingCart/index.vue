@@ -88,18 +88,21 @@ export default {
     handleSubmit() {
       Indicator.open("提交中,请耐心等待...");
       setTimeout(() => {
-        API.getHomeData().then(res => {
-          Indicator.close();
-          if (res.success) {
-            Toast({
-              message: "提交成功",
-            });
-          } else {
-            Toast({
-              message: "操作失败",
-            });
-          }
-        });
+        // API.getHomeData().then(res => {
+        //   Indicator.close();
+        //   if (res.success) {
+        //     Toast({
+        //       message: "提交成功",
+        //     });
+        //   } else {
+        //     Toast({
+        //       message: "操作失败",
+        //     });
+        //   }
+        // });
+        API.getUser({uid:1}).then(res => {
+          console.log(res);
+        })
       }, 1000);
     },
     renderValue(unitPrice, number) {

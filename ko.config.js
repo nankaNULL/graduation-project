@@ -10,8 +10,10 @@ module.exports = (context) => {
       "port": serverConfig.port
     },
     proxy: [{
-      "path": '/api/v1/**',
-      "target": 'http://172.16.8.194:8891',
+      // "path": '/api/v1/**',
+      // "target": 'http://172.16.8.194:8891',
+      "path": '/api/**',
+      "target": 'http://192.168.191.2:3000',
       "changeOrigin": true
     }],
     webpack: {
