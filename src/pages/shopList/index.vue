@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-shop-list">
     <mt-header title="商品">
       <mt-button
         slot="left"
@@ -7,7 +7,43 @@
         @click.native="handleMore"
       ></mt-button>
     </mt-header>
-    <div
+    <div class="shop-top">
+      <div class="top-img">
+        <img src="" alt="头像" class="img-avator">
+      </div>
+      <div class="shop-info">
+        <h4>eemmm</h4>
+        <p>评价<span>1</span> | 月售 <span>123</span>单 | 时间<span>29</span>分钟</p>
+        <div>
+          <span>满减</span>
+          <span>29-16</span>
+        </div>
+      </div>
+    </div>
+    <div class="shop-content">
+      <div class="tab">
+        <div></div>
+      </div>
+      <mt-navbar v-model="selected">
+        <mt-tab-item id="1">option A</mt-tab-item>
+        <mt-tab-item id="2">option B</mt-tab-item>
+        <mt-tab-item id="3">option C</mt-tab-item>
+      </mt-navbar>
+
+      <mt-tab-container v-model="selected">
+        <mt-tab-container-item id="1">
+          <ComponentList></ComponentList>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="2">
+          <div>emm2</div>
+        </mt-tab-container-item>
+        <mt-tab-container-item id="3">
+          <div>emm3</div>
+        </mt-tab-container-item>
+      </mt-tab-container>
+    </div>
+    
+    <!-- <div
       class="page-infinite-wrapper"
       ref="wrapper"
       :style="{ height: wrapperHeight + 'px' }"
@@ -37,17 +73,23 @@
         <mt-spinner type="fading-circle"></mt-spinner>
         加载中...
       </p>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
+import { Navbar, TabItem } from 'mint-ui';
+import ComponentList from './components/list.vue';
 export default {
   name: "shop",
+  components:{
+    ComponentList
+  },
   data() {
     return {
       loading: false,
       list: [],
-      wrapperHeight: 0
+      wrapperHeight: 0,
+      selected: '1'
     };
   },
   methods: {

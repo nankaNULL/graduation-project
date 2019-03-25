@@ -6,16 +6,18 @@ import Login from '@/pages/login'
 import ShoppingCart from '@/pages/shoppingCart'
 import HomePage from '@/pages/homePage'
 import ShopList from '@/pages/shopList'
+import Home from '@/pages/home'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
+      redirect:'/index',
       component: MainLayout,
       children: [{
         path: '/index',
-        component: Login
+        component: Home
       }, {
         path: '/cart',
         component: ShoppingCart
