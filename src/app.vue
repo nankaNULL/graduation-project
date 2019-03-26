@@ -18,7 +18,12 @@ html {
   margin: 0;
   font-size:12px;
 }
+ul,li{margin:0; padding:0}
+li{list-style: none;}
 #app {
   height: 100%;
+}
+.clearfix{
+  overflow: hidden;
 }
 </style>
