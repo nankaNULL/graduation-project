@@ -37,14 +37,14 @@
         购物车
       </mt-tab-item>
       <mt-tab-item
-        id="我的"
+        id="详情"
         @click.native="routerPush"
       >
         <img
           slot="icon"
           src="https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg"
         >
-        我的
+        详情
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -63,7 +63,7 @@ export default {
         首页: "index",
         商品: "shop",
         购物车: "cart",
-        我的: "home"
+        详情: "home"
       }
     };
   },

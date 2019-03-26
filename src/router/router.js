@@ -4,7 +4,7 @@ import MainLayout from '../layout/mainLayout';
 import NotFoundComponent from '../pages/error/404';
 import Login from '@/pages/login'
 import ShoppingCart from '@/pages/shoppingCart'
-import HomePage from '@/pages/homePage'
+import GoodInfo from '@/pages/goodInfo'
 import ShopList from '@/pages/shopList'
 import Home from '@/pages/home'
 Vue.use(Router)
@@ -23,7 +23,7 @@ export default new Router({
         component: ShoppingCart
       }, {
         path: '/home',
-        component: HomePage
+        component: GoodInfo
       }, {
         path: '/shop',
         component: ShopList
