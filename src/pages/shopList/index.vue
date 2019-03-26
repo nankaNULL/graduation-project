@@ -13,76 +13,38 @@
       </div>
       <div class="shop-info">
         <h4>eemmm</h4>
-        <p>评价<span>1</span> | 月售 <span>123</span>单 | 时间<span>29</span>分钟</p>
+        <!-- <p>评价<span>1</span> | 月售 <span>123</span>单 | 时间<span>29</span>分钟</p>
         <div>
           <span>满减</span>
           <span>29-16</span>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="shop-content">
-      <div class="tab">
-        <div></div>
-      </div>
       <mt-navbar v-model="selected">
-        <mt-tab-item id="1">option A</mt-tab-item>
-        <mt-tab-item id="2">option B</mt-tab-item>
-        <mt-tab-item id="3">option C</mt-tab-item>
+        <mt-tab-item id="1">商品列表</mt-tab-item>
+        <mt-tab-item id="2">商家详情</mt-tab-item>
       </mt-navbar>
-
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
           <ComponentList></ComponentList>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-          <div>emm2</div>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="3">
-          <div>emm3</div>
+          <StoreInfo></StoreInfo>
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
-    
-    <!-- <div
-      class="page-infinite-wrapper"
-      ref="wrapper"
-      :style="{ height: wrapperHeight + 'px' }"
-    >
-      <div
-        class="page-infinite-list"
-        v-infinite-scroll="loadMore"
-        infinite-scroll-disabled="loading"
-        infinite-scroll-distance="50"
-      >
-        <div
-          v-for="(item,index) in list"
-          :key="index"
-          class="page-infinite-listitem"
-        >
-          <mt-cell
-            :title="`第${item}名`"
-            is-link
-            value="小明"
-          ></mt-cell>
-        </div>
-      </div>
-      <p
-        v-show="loading"
-        class="page-infinite-loading"
-      >
-        <mt-spinner type="fading-circle"></mt-spinner>
-        加载中...
-      </p>
-    </div> -->
   </div>
 </template>
 <script>
 import { Navbar, TabItem } from 'mint-ui';
 import ComponentList from './components/list.vue';
+import StoreInfo from './components/storeInfo.vue';
 export default {
   name: "shop",
   components:{
-    ComponentList
+    ComponentList,
+    StoreInfo
   },
   data() {
     return {
@@ -107,14 +69,29 @@ export default {
 };
 </script>
 <style lang="scss">
-.page-infinite-loading {
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  div {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
+.page-shop-list{
+  .shop-top{
+    .top-img{
+      position: relative;
+      height:75px;
+      border: 1px solid black;
+      img{ 
+        position:absolute;
+        bottom:-30px;
+        left: 50%;
+        height:60px;
+        width:60px;
+        margin-left: -30px;
+        border: 1px solid black; 
+      }
+    }
+  }
+  .shop-info{
+    text-align: center;
+    padding: 20px;
+  }
+  .shop-content{
+    margin-bottom: 55px;
   }
 }
 </style>

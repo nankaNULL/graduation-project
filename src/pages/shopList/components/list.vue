@@ -1,18 +1,40 @@
 <template>
   <div class="component-list">
-    emmmm?????
+    <div class="list-item" v-for="(item,key) in shopList" :key="key">
+      <div class="item-l">
+        <img :src="item.imgUrl" alt="">
+      </div>
+      <div class="item-r">
+        <div>
+          <h4>{{item.name}}</h4>
+          <p>&yen;{{item.price}}</p>
+          <p>推荐渠道：{{item.channel}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-// import { Navbar, TabItem } from 'mint-ui';
 export default {
   name: "component-list",
   data() {
     return {
-      // loading: false,
-      // list: [],
-      // wrapperHeight: 0,
-      // selected: '1'
+      shopList: [{
+        imgUrl:'11',
+        name:'1',
+        price:'1',
+        channel:'elm'
+      },{
+        imgUrl:'11',
+        name:'1',
+        price:'1',
+        channel:'elm'
+      },{
+        imgUrl:'11',
+        name:'1',
+        price:'1',
+        channel:'elm'
+      }]
     };
   },
   methods: {
@@ -30,14 +52,23 @@ export default {
 };
 </script>
 <style lang="scss">
-.page-infinite-loading {
-  text-align: center;
-  height: 50px;
-  line-height: 50px;
-  div {
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 5px;
+  .component-list{
+    .list-item{
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #e5e5e5;
+      &>div{padding: 20px}
+      .item-l{
+        img{
+          display: inline-block;
+          border:1px solid black;
+          height:75px;
+          width: 75px;
+        }
+      }
+      .item-r{
+
+      }
+    }
   }
-}
 </style>
