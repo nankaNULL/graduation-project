@@ -63,7 +63,7 @@ export default {
         首页: "index",
         商品: "shop",
         购物车: "cart",
-        详情: "home"
+        详情: "goodInfo"
       }
     };
   },

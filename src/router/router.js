@@ -22,7 +22,7 @@ export default new Router({
         path: '/cart',
         component: ShoppingCart
       }, {
-        path: '/home',
+        path: '/goodInfo',
         component: GoodInfo
       }, {
         path: '/shop',
