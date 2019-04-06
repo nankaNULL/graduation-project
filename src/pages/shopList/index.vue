@@ -12,7 +12,7 @@
         <img src="" alt="头像" class="img-avator">
       </div>
       <div class="shop-info">
-        <h4>eemmm</h4>
+        <h4>{{shopInfo.name}}</h4>
         <!-- <p>评价<span>1</span> | 月售 <span>123</span>单 | 时间<span>29</span>分钟</p>
         <div>
           <span>满减</span>
@@ -27,7 +27,7 @@
       </mt-navbar>
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
-          <ComponentList></ComponentList>
+          <ComponentList v-bind:shopInfo="shopInfo" v-bind:foodList="list"></ComponentList>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
           <StoreInfo></StoreInfo>
@@ -40,6 +40,7 @@
 import { Navbar, TabItem } from 'mint-ui';
 import ComponentList from './components/list.vue';
 import StoreInfo from './components/storeInfo.vue';
+import { API } from "@/api/index.js";
 export default {
   name: "shop",
   components:{
@@ -50,20 +51,27 @@ export default {
     return {
       loading: false,
       list: [],
-      wrapperHeight: 0,
-      selected: '1'
+      selected: '1',
+      shopId: this.$route.query.id,
+      shopInfo: {}
     };
   },
+  mounted: function(){
+    const shopId = this.$route.query.id;
+    this.getFoodList(shopId)
+  },
   methods: {
-    loadMore() {
-      this.loading = true;
-      setTimeout(() => {
-        let last = this.list[this.list.length - 1] || 0;
-        for (let i = 1; i <= 10; i++) {
-          this.list.push(last + i);
+    getFoodList (shopId) {
+      API.getFoodList({ shopId }).then((res) => {
+        const { result, message, shop, food} = res;
+        if (result) {
+          this.list = food;
+          this.shopInfo = shop;
+        } else {
+          // 弹框
+          console.log(message)
         }
-        this.loading = false;
-      }, 2000);
+      })
     }
   }
 };

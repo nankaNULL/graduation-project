@@ -3,8 +3,14 @@ export default {
     method:'get',
     url:'/mock/success.json'
   },
-  getUser:{
+  // 获取首页列表
+  getShopList:{
     method:'get',
-    url:'/api/index/getUser'
+    url:'/api/shop/getShopList'
+  },
+  // 获取首页列表
+  getFoodList:{
+    method:'get',
+    url:'/api/food/getFoodList'
   }
 }

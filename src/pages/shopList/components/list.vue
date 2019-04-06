@@ -2,13 +2,13 @@
   <div class="component-list">
     <div class="list-item" v-for="(item,key) in shopList" :key="key">
       <div class="item-l">
-        <img :src="item.imgUrl" alt="">
+        <img :src="item['image_path']" alt="">
       </div>
       <div class="item-r">
         <div>
           <h4>{{item.name}}</h4>
           <p>&yen;{{item.price}}</p>
-          <p>推荐渠道：{{item.channel}}</p>
+          <!-- <p>推荐渠道：{{item.c}}</p> -->
         </div>
       </div>
     </div>
@@ -17,25 +17,16 @@
 <script>
 export default {
   name: "component-list",
+  props: ['shopInfo','foodList'],
   data() {
     return {
-      shopList: [{
-        imgUrl:'11',
-        name:'1',
-        price:'1',
-        channel:'elm'
-      },{
-        imgUrl:'11',
-        name:'1',
-        price:'1',
-        channel:'elm'
-      },{
-        imgUrl:'11',
-        name:'1',
-        price:'1',
-        channel:'elm'
-      }]
+      shopList: []
     };
+  },
+  watch:{
+    foodList: function( info ){
+      this.shopList = info;
+    }, 
   },
   methods: {
     loadMore() {
