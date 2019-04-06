@@ -128,8 +128,8 @@ export default {
     },
     // 跳转到商品列表
     handleTurnToPage(shop) {
-      const { elm_sid, mt_sid } = shop;
-      this.$router.push({ path:'/shop', query:{ id: elm_sid || mt_sid }})
+      const { elm_sid, mt_sid, recommend } = shop;
+      this.$router.push({ path:'/shop', query:{ id: elm_sid || mt_sid, recommend: recommend }})
     }
   }
 };
