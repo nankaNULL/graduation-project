@@ -1,14 +1,15 @@
 <template>
   <div class="component-list">
-    <div class="list-item" v-for="(item,key) in shopList" :key="key">
+    <div class="list-item" v-for="(item,key) in shopList" :key="key" @click="handleTurnToPage(item)">
       <div class="item-l">
         <img :src="item['image_path']" alt="">
       </div>
       <div class="item-r">
         <div>
-          <h4>{{item.name}}</h4>
-          <p>&yen;{{item.price}}</p>
-          <!-- <p>推荐渠道：{{item.c}}</p> -->
+          <h3>{{item.name}}</h3>
+          <p>{{item.description}}</p>
+          <p style="color:red;font-size:16px">&yen;<span>{{item[item.recommend+'_sub_price'].toFixed(2)}}</span></p>
+          <p>推荐渠道：{{item.recommend === 'elm' ? '饿了么' : '美团'}}</p>
         </div>
       </div>
     </div>
@@ -17,7 +18,7 @@
 <script>
 export default {
   name: "component-list",
-  props: ['shopInfo','foodList'],
+  props: ['shopInfo','foodList','recommend'],
   data() {
     return {
       shopList: []
@@ -29,6 +30,10 @@ export default {
     }, 
   },
   methods: {
+    handleTurnToPage (food) {
+      const { recommend } = food;
+      this.$router.push({ path:'/goodInfo', query:{ id: food[recommend+'_fid'], recommend: recommend }})
+    },
     loadMore() {
       this.loading = true;
       setTimeout(() => {
@@ -46,19 +51,18 @@ export default {
   .component-list{
     .list-item{
       display: flex;
-      align-items: center;
       border-bottom: 1px solid #e5e5e5;
-      &>div{padding: 20px}
+      padding: 20px;
       .item-l{
         img{
           display: inline-block;
-          border:1px solid black;
           height:75px;
           width: 75px;
         }
       }
       .item-r{
-
+        margin-left: 20px;
+        h3{padding:0;margin:0}
       }
     }
   }
