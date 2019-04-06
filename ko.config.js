@@ -13,7 +13,7 @@ module.exports = (context) => {
       // "path": '/api/v1/**',
       // "target": 'http://172.16.8.194:8891',
       "path": '/api/**',
-      "target": 'http://192.168.191.2:3000',
+      "target": 'http://localhost:3000',
       "changeOrigin": true
     }],
     webpack: {
