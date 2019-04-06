@@ -16,14 +16,21 @@ html {
   background-color: #fbf9fe;
   height: 100%;
   margin: 0;
-  font-size:12px;
+  font-size:14px;
 }
-ul,li{margin:0; padding:0}
+ul, li{margin:0; padding:0}
 li{list-style: none;}
+h3, p{margin:10px 0; padding:0;}
 #app {
   height: 100%;
 }
 .clearfix{
   overflow: hidden;
+}
+.ml-10{
+  margin-left: 10px;
+}
+.mr-10{
+  margin-right: 10px;
 }
 </style>
