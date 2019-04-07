@@ -31,7 +31,7 @@
           <ComponentList v-bind:shopInfo="shopInfo" v-bind:foodList="list"></ComponentList>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-          <StoreInfo></StoreInfo>
+          <StoreInfo v-bind:shop="shopInfo"></StoreInfo>
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
