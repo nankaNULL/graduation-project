@@ -33,4 +33,13 @@ h3, p{margin:10px 0; padding:0;}
 .mr-10{
   margin-right: 10px;
 }
+.text-ellipsis{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>
