@@ -7,9 +7,9 @@
       <div class="item-r">
         <div>
           <h3>{{item.name}}</h3>
-          <p>{{item.description}}</p>
-          <p style="color:red;font-size:16px">&yen;<span>{{item[item.recommend+'_sub_price'].toFixed(2)}}</span></p>
-          <p>推荐渠道：{{item.recommend === 'elm' ? '饿了么' : '美团'}}</p>
+          <p class="text-ellipsis">{{item.description}}</p>
+          <p style="color:red;font-size:16px">&yen;<span>{{item[item.recommend+'_sub_price']&&item[item.recommend+'_sub_price'].toFixed(2)}}</span></p>
+          <p>推荐渠道：{{item.recommend === 'elm' ? '饿了么' : '美团' }}</p>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@
       ></mt-button>
     </mt-header>
     <div class="good-info">
-      <img src="" alt="">
+      <img :src="foodInfo['image_path']" alt="">
       <h3>{{foodInfo.name}}</h3>
       <div class="item" >
         <h3>饿了么</h3>
@@ -86,9 +86,9 @@ export default {
   .good-info{
     &>img{
       display: inline-block;
-      height: 100px;
+      height: 200px;
       width: 100%;
-      border: 1px solid black;
+      border: 1px solid #e5e5e5;
     }
     &>h3, .item{ padding: 10px 20px }
     .item{
