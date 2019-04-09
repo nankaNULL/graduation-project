@@ -1,9 +1,7 @@
 <template>
   <div class="store-info">
     <div class="info-item">
-      <mt-cell class="title"
-        title="商家信息"
-      ></mt-cell>
+      
       <mt-cell
         title="店铺名称"
         :value="shop.name"
@@ -12,22 +10,20 @@
         title="地址"
         :value="shop.address"
       ></mt-cell>
-      <!-- <mt-cell
-        title="创始人"
-        :value="userData.creator"
+     <mt-cell
+        title="电话"
+        :value="shop.phone"
       ></mt-cell>
       <mt-cell
-        title="公司英文简称"
-        :value="userData.englishName"
+        title="营业时间"
+        :value="shop['opening_hours']"
       ></mt-cell>
       <mt-cell
-        title="愿景"
-        :value="userData.yuanjing"
+        title="商家信息"
       ></mt-cell>
       <mt-cell
-        title="价值观"
-        :value="userData.jiazhiguan"
-      ></mt-cell> -->
+        :value="shop.promotion_info"
+      ></mt-cell>
     </div>
   </div>
 </template>

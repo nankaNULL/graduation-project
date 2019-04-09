@@ -14,10 +14,9 @@
       </div>
       <div class="shop-info">
         <h2>{{shopInfo.name}}</h2>
-        <p>推荐渠道：<span>美团</span> | 月售：<span>{{shopInfo[recommend+'_recent_order_num']}}</span>单 | 时间：<span>{{shopInfo[recommend+'_lead_time']}}</span>分钟</p>
+        <p>推荐渠道：<span>{{recommend === 'elm' ? '饿了么' : '美团'}}</span> | 月售：<span>{{shopInfo[recommend+'_recent_order_num']}}</span>单 | 时间：<span>{{shopInfo[recommend+'_lead_time']}}</span>分钟</p>
         <div>
-          <span>满减</span>
-          <span>29-16</span>
+          <span>{{shopInfo['sale_cut']}}</span>
         </div>
       </div>
     </div>
