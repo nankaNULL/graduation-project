@@ -83,8 +83,8 @@ export default {
     myType:function(type){
       this.params.type = type;
       this.list = [];
-      this.getShopList()
-      this.loadMore();
+      this.getShopClassifyList();
+      // this.loadMore();
     }
   },
   mounted: function() {
@@ -94,14 +94,23 @@ export default {
     // 获取列表
     getShopList (sortId) {
       API.getShopList({sortId}).then((result) => {
-        result.forEach(item => {
-          if (item['image_path'].slice(0,4) !== 'http' ){
-            let imgType = item['image_path'].slice(-3) == 'png' ? 'png' : 'jpeg';
-            item['image_path'] = 'https://fuss10.elemecdn.com/'+item['image_path'].slice(0,1)+'/'+item['image_path'].slice(1,3)+'/'+item['image_path'].slice(3)+'.'+imgType+'?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/';
-          }
-        })
+        result.forEach(item => this.getImageUrlFormat (item))
         this.list = result;
       })
+    },
+    // 获取分类列表
+    getShopClassifyList () {
+      API.getShopClassifyList({sortId:this.sortId, type:this.myType}).then((result) => {
+        result.forEach(item => this.getImageUrlFormat (item))
+        this.list = result;
+      })
+    },
+    // 图片路径
+    getImageUrlFormat (item) {
+      if (item['image_path'].slice(0,4) !== 'http' ){
+        let imgType = item['image_path'].slice(-3) == 'png' ? 'png' : 'jpeg';
+        item['image_path'] = 'https://fuss10.elemecdn.com/'+item['image_path'].slice(0,1)+'/'+item['image_path'].slice(1,3)+'/'+item['image_path'].slice(3)+'.'+imgType+'?imageMogr/format/webp/thumbnail/!130x130r/gravity/Center/crop/130x130/';
+      }
     },
     // 选择框的弹出
     handleOptionShow () {

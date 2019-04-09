@@ -8,6 +8,11 @@ export default {
     method:'get',
     url:'/api/shop/getShopList'
   },
+  // 获取店铺分类列表信息
+  getShopClassifyList:{
+    method:'get',
+    url:'/api/shop/classify'
+  },
   // 获取商品列表
   getFoodList:{
     method:'get',

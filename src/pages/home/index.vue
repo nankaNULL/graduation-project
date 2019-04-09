@@ -24,18 +24,18 @@ export default {
   data() {
     return {
       cellData: [
-        { name: '美食', src:'' },
-        { name: '超市便利', src:'' },
-        { name: '蔬菜水果', src:'' },
-        { name: '甜点饮品', src:'' },
-        { name: '夜宵', src:'' },
-        { name: '校园优选', src:'' },
-        { name: '减免配送费', src:'' },
-        { name: '龙虾烧烤', src:'' },
-        { name: '浪漫鲜花', src:'' },
-        { name: '甜蜜蛋糕', src:'' }
+        { name: '简餐', src:'' },
+        { name: '包子粥店', src:'' },
+        { name: '川湘菜', src:'' },
+        { name: '汉堡薯条', src:'' },
+        { name: '盖浇饭', src:'' },
+        { name: '甜品', src:'' },
+        { name: '香锅砂锅', src:'' },
+        { name: '饺子馄饨', src:'' },
+        { name: '韩国炸鸡', src:'' },
+        { name: '米粉面馆', src:'' }
       ],
-      type: '美食'
+      type: '简餐'
     };
   },
   methods: {
