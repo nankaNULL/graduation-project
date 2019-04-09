@@ -13,6 +13,11 @@ export default {
     method:'get',
     url:'/api/shop/classify'
   },
+  // 搜索店铺
+  searchShop:{
+    method:'get',
+    url:'/api/common/searchShop'
+  },
   // 获取商品列表
   getFoodList:{
     method:'get',
@@ -22,5 +27,5 @@ export default {
   getFoodInfo:{
     method:'get',
     url:'/api/food/getFoodInfo'
-  }
+  },
 }
