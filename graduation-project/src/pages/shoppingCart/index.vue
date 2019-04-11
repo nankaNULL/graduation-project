@@ -100,7 +100,8 @@ export default {
         //     });
         //   }
         // });
-        API.getUser({uid:1}).then(res => {
+        API.getShopList({sortId: 0}).then(res => {
+          
           console.log(res);
         })
       }, 1000);
