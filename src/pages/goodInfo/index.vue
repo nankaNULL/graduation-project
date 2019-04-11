@@ -13,8 +13,8 @@
       <div class="item" >
         <h3>饿了么</h3>
         <div v-if="JSON.stringify(foodInfo.elm)!='{}'">
-          <p><span>月售：{{foodInfo.elm['month_sales']}}</span> <span class="ml-10">赞：{{foodInfo.elm['satisfy_rate']}}</span></p>
-          <!-- <p></p> -->
+          <p><span>月售：{{foodInfo.elm['month_sales']}}</span></p>
+          <p>好评率：{{foodInfo.elm['satisfy_rate']}}%</p>
           <p style="color:red">价格：&yen;{{foodInfo.elm.price}}</p>
         </div>
         <div v-else>
@@ -24,7 +24,7 @@
       <div class="item">
         <h3>美团</h3>
         <div v-if="JSON.stringify(foodInfo.mt)!='{}'">
-          <p>月售：{{foodInfo.mt['month_sales']}}</p>
+          <p><span> 月售：{{foodInfo.mt['month_sales']}}</span></p>
           <p>赞：{{foodInfo.mt['satisfy_rate']}}</p>
           <p style="color:red">价格：&yen;{{foodInfo.mt.price}}</p>
         </div>

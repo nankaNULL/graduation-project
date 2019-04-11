@@ -8,6 +8,8 @@
       ></mt-cell>
       <mt-cell
         title="地址"
+      ></mt-cell>
+      <mt-cell style="text-align:right"
         :value="shop.address"
       ></mt-cell>
      <mt-cell

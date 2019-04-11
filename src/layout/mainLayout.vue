@@ -1,7 +1,7 @@
 <template>
   <div id="mainTpl">
     <router-view></router-view>
-    <mt-tabbar
+    <!-- <mt-tabbar
       v-model="selectedBar"
       fixed
       ref="mtTabbar"
@@ -46,7 +46,7 @@
         >
         详情
       </mt-tab-item>
-    </mt-tabbar>
+    </mt-tabbar> -->
   </div>
 </template>
 <script>
