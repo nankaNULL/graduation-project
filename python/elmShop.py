@@ -64,7 +64,7 @@ def get_connect(items):
          else:
             print('更新失败')
       else:
-         sta = connectdb.exe_update(cur,"insert into final_shop(elm_sid, name, image_path, address, elm_delivery_fee, elm_lead_time, distance, elm_order_amount, elm_rating, elm_recent_order_num, elm_rating_count, flavors, sale_cut, phone, opening_hours, promotion_info) values('%s','%s','%s','%s','%f','%f','%f','%f','%f','%f','%f','%s','%s','%s','%s','%s')" % (info['sid'], info['name'], info['image_path'], info['address'], info['float_delivery_fee'], info['order_lead_time'], info['distance'], info['float_minimum_order_amount'], info['rating'], info['recent_order_num'], info['rating_count'], info['flavors'],info['sale_cut'],info['phone'],info['opening_hours'],info['promotion_info']))
+         sta = connectdb.exe_update(cur,"insert into final_shop(elm_sid, name, image_path, address, elm_delivery_fee, elm_lead_time, distance, elm_order_amount, elm_rating, elm_recent_order_num, elm_rating_count, flavors, elm_sale_cut, phone, opening_hours, promotion_info) values('%s','%s','%s','%s','%f','%f','%f','%f','%f','%f','%f','%s','%s','%s','%s','%s')" % (info['sid'], info['name'], info['image_path'], info['address'], info['float_delivery_fee'], info['order_lead_time'], info['distance'], info['float_minimum_order_amount'], info['rating'], info['recent_order_num'], info['rating_count'], info['flavors'],info['sale_cut'],info['phone'],info['opening_hours'],info['promotion_info']))
          if sta == 1:
             print('插入成功')
          else:
