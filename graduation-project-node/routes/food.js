@@ -4,14 +4,30 @@ var util = require("./util");
 var router = express.Router();
 
 // 获取最大减免额度百分比
-function getMaxSub (str) {
+function getMaxSub (str, price) {
 	let arr = str.replace(/[^0-9]+/g,",").split(",").slice(1);
-	let pointLists = [];
+	let min = 1000, mini = 1000;
+	arr = arr.filter(function (s) {
+    return s && s.trim(); // 注：IE9(不包含IE9)以下的版本没有trim()方法
+	});
+	// console.log(arr)
 	arr.forEach((item, index) => {
-		if (index % 2 == 0)
-			pointLists.push( (item - arr[index + 1]) / item );
+		if ( index % 2 == 0 && item && index < arr.length - 1 && item >= price ){
+			let point = (item - arr[index + 1]) / item;
+			if ( min > point ) min = point;
+		}
 	})
-	return Math.min.apply(null,pointLists)
+	for(let i=0; i < arr.length; i++){
+		if (i % 2 == 0 && arr[i] >= price) {
+			mini = i;
+			break;
+		}
+	}
+	// console.log(price,min === 1000 ? null : (mini == 0 ? null : min),mini === 0 ? null : arr[mini+1])
+	return {
+		min: min === 1000 ? null : (mini == 0 ? null : min),
+		maxCut: mini === 0 ? null : arr[mini-1]
+	}
 }
 
 // 商品列表数据获取
@@ -21,21 +37,30 @@ function getFood (response, {type, shopId}) {
 			if ( err ) throw err;
 			if ( result.length > 0 ) {
 				let newResult = [];
-				let elm_str = '满22减13;满30减23;满45减26;满60减35';
-				let mt_str = '满22减13;满30减23;满45减25;满60减35';
-				let maxSub = {};
-				maxSub['elm_maxSub'] = getMaxSub(elm_str);
-				maxSub['mt_maxSub'] = getMaxSub(mt_str);
+				let elm_str = response.shop['elm_sale_cut'];
+				let mt_str = response.shop['mt_sale_cut'];
+				
 				result.forEach(item => {
 					const channel = ['elm','mt'];
+					// const channel = ['elm'];
+					let maxSub = {};
+					maxSub['elm_maxSub'] = elm_str && getMaxSub(elm_str, item['elm_price']);
+					maxSub['mt_maxSub'] = mt_str && getMaxSub(mt_str, item['mt_price']);
 					channel.forEach( channelItem => {
-						item[channelItem + '_price'] ? item[channelItem + '_sub_price'] = maxSub[channelItem+'_maxSub'] * item[channelItem + '_price'] : null;
+						if (item[channelItem + '_price']) {
+							let maxCut = item[channelItem + '_price'] - (maxSub[channelItem+'_maxSub'].maxCut || 0);
+							console.log(item[channelItem + '_price'],(maxSub[channelItem+'_maxSub'].maxCut || 0),maxCut)
+							let compCut = maxSub[channelItem+'_maxSub'].min ? (maxSub[channelItem+'_maxSub'].min * item[channelItem + '_price']) : 100000;
+							console.log(maxSub[channelItem+'_maxSub'].min,(maxSub[channelItem+'_maxSub'].min * item[channelItem + '_price']),compCut)
+							item[channelItem + '_sub_price'] = maxCut < compCut ? maxCut : compCut;
+							console.log(item[channelItem + '_sub_price'])
+						}
 					})
 					if (item['elm_sub_price'] && item['mt_sub_price']) {
 						if (item['elm_sub_price'] == item['mt_sub_price'] ) {
 							item['elm_month_sales'] > item['mt_month_sales'] ? item.recommend = 'elm' : item.recommend = 'mt'
 						} else {
-							item['elm_sub_price'] > item['mt_sub_price'] ? item.recommend = 'elm' : item.recommend = 'mt'
+							item['elm_sub_price'] < item['mt_sub_price'] ? item.recommend = 'elm' : item.recommend = 'mt'
 						}
 					} else {
 						item['elm_sub_price'] ? item.recommend = 'elm' : item.recommend = 'mt';
@@ -74,7 +99,6 @@ router.get("/getFoodList", (req, res) => {
 		type: shopId.slice(0,1) == 'E' ? 'elm_sid' : 'mt_sid'
 	};
 	var response = {};
-	
 	getShop(response, params)
 		.then(() => getFood(response, params))
 		.then((result) => res.send(result))
