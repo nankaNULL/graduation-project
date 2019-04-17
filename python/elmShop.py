@@ -23,7 +23,7 @@ def crawler_ele(page=0):
 
    # print(re.get('has_next') == True)
    
-   if re.get('has_next') == True and page < 8:
+   if re.get('has_next') == True and page < 85:
       print(page)
       crawler_ele(page+1)
 
@@ -55,7 +55,7 @@ def get_connect(items):
       info['opening_hours'] = restaurant.get('opening_hours')[0] #营业时间
       info['promotion_info'] = restaurant.get('promotion_info') #描述
       if isExist(info['sid']):
-         sql = Template("update final_shop set elm_rating=${elm_rating},elm_recent_order_num=${elm_recent_order_num},elm_rating_count=${elm_rating_count},sale_cut='${sale_cut}',phone='${phone}',opening_hours='${opening_hours}',promotion_info='${promotion_info}' where elm_sid='${elm_sid}'")
+         sql = Template("update final_shop set elm_rating=${elm_rating},elm_recent_order_num=${elm_recent_order_num},elm_rating_count=${elm_rating_count},elm_sale_cut='${sale_cut}',phone='${phone}',opening_hours='${opening_hours}',promotion_info='${promotion_info}' where elm_sid='${elm_sid}'")
          sql = sql.substitute(elm_rating=info['rating'],elm_recent_order_num=info['recent_order_num'],elm_rating_count=info['rating_count'],sale_cut=info['sale_cut'],phone=info['phone'],opening_hours=info['opening_hours'],promotion_info=info['promotion_info'],elm_sid=info['sid'])
          # print(sql)
          sta = connectdb.exe_update(cur,sql)
@@ -75,6 +75,6 @@ def isExist(sid):
    return len(sta)
 
 conn, cur = connectdb.conn_db()
-crawler_ele(0)
+crawler_ele(61)
 connectdb.exe_commit(cur)    # 注意！！ 一定要记得commit，否则操作成功了，但是并没有添加到数据库中
 connectdb.conn_close(conn, cur)
